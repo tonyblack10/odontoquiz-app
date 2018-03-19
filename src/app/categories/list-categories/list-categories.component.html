@@ -1,0 +1,58 @@
+<app-admin-dashboard>
+  <app-panel header="Categorias">
+    <div class="row clearfix">
+      <div class="col-md-3 col-md-offset-9 col-sm-4 col-sm-offset-8 col-xs-12 col-sm-12">
+        <a routerLink="/categories/new" class="btn btn-primary btn-block waves-effect">
+            <i class="material-icons">add</i>
+            <span>ADICIONAR</span>
+        </a>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-12">
+        <form [formGroup]="searchForm" novalidate>
+          <div class="input-group">
+            <div class="form-line">
+                <input type="search" formControlName="searchControl" 
+                  class="form-control" placeholder="Buscar..." autocomplete="off">
+            </div>
+            <span class="input-group-addon">
+                <i class="material-icons">search</i>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <table class="table" *ngIf="page?.total > 0">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th class="text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of page.docs">
+          <td>{{ category.name }}</td>
+          <td class="text-center">
+            <a [routerLink]="['/categories/edit', category._id]" class="btn bg-light-blue btn-xs waves-effect" 
+              title="Editar">
+              <i class="material-icons">edit</i>
+            </a>
+            <a class="btn bg-red btn-xs waves-effect" title="Remover" (click)="categoryRemove = category"
+            data-toggle="modal" data-target="#deleteModal">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-paginate *ngIf="page?.total > 0" [numberOfPages]="page?.pages" [currentPage]="page?.page" 
+          (changePage)="alterPage($event)"></app-paginate>
+    <p *ngIf="page?.total == 0">
+      Nenhuma categoria encontrada.
+    </p>
+  </app-panel>
+</app-admin-dashboard>
+
+<app-modal-delete [message]="'Deseja realmente remover a categoria: '+categoryRemove?.name+'?'" 
+      (confirm)="remove(categoryRemove._id)"></app-modal-delete>

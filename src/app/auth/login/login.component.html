@@ -1,0 +1,45 @@
+<div class="login-page">
+  <div class="login-box">
+      <div class="logo">
+        <a href="javascript:void(0);"><b>Login</b></a>
+      </div>
+      <div class="card">
+          <div class="body">
+              <form [formGroup]="loginForm" novalidate>
+                  <div class="input-group">
+                    <div class="form-line" [class.error]="loginForm.get('email').hasError('required') 
+                        && loginForm.get('email').touched">
+                          <input type="email" class="form-control" formControlName="email" 
+                            placeholder="E-mail" autofocus autocomplete="off">
+                      </div>
+                      <label class="error" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+                          O campo e-mail é de preenchimento obrigatório
+                      </label>
+                      <label class="error" *ngIf="(loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')) 
+                        && loginForm.get('email').touched">
+                          O e-mail informado é inválido
+                      </label>
+                  </div>
+                  <div class="input-group">
+                      <div class="form-line" [class.error]="loginForm.get('password').hasError('required') 
+                      && loginForm.get('password').touched">
+                          <input type="password" class="form-control" formControlName="password" 
+                          placeholder="Senha">
+                      </div>
+                      <label class="error" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+                          O campo senha é de preenchimento obrigatório
+                      </label>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-offset-8 col-xs-4">
+                          <button class="btn btn-block bg-blue waves-effect" type="button"
+                            [disabled]="loginForm.invalid" (click)="login(loginForm.value)">
+                            Entrar
+                          </button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>

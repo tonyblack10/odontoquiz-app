@@ -1,0 +1,20 @@
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- #END# Overlay For Sidebars -->
+<app-topbar></app-topbar>
+
+<section>
+  <!-- Left Sidebar -->
+  <aside id="leftsidebar" class="sidebar">
+    <app-user-info></app-user-info>
+    <app-menu></app-menu>
+    <app-footer></app-footer>
+  </aside>
+  <!-- #END# Left Sidebar -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <ng-content></ng-content>
+  </div>
+</section>

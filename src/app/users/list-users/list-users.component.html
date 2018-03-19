@@ -1,0 +1,58 @@
+<app-admin-dashboard>
+    <app-panel header="Usuários">
+      <div class="row clearfix">
+        <div class="col-md-3 col-md-offset-9 col-sm-4 col-sm-offset-8 col-xs-12 col-sm-12">
+          <a routerLink="/users/new" class="btn btn-primary btn-block waves-effect">
+              <i class="material-icons">add</i>
+              <span>ADICIONAR</span>
+          </a>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-12">
+          <form [formGroup]="searchForm" novalidate>
+            <div class="input-group">
+              <div class="form-line">
+                  <input type="search" formControlName="searchControl" 
+                    class="form-control" placeholder="Buscar..." autocomplete="off">
+              </div>
+              <span class="input-group-addon">
+                  <i class="material-icons">search</i>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <table class="table" *ngIf="page?.total > 0">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th class="text-center">Administrador</th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of page.docs">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td class="text-center">{{ user.isAdmin ? 'SIM' : 'NÃO' }}</td>
+            <td class="text-center">
+              <a class="btn bg-red btn-xs waves-effect" title="Remover" (click)="userRemove = user"
+              data-toggle="modal" data-target="#deleteModal" *ngIf="!user.isAdmin">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-paginate *ngIf="page?.total > 0" [numberOfPages]="page?.pages" [currentPage]="page?.page" 
+            (changePage)="alterPage($event)"></app-paginate>
+      <p *ngIf="page?.total == 0">
+        Nenhum usuário encontrada.
+      </p>
+    </app-panel>
+  </app-admin-dashboard>
+  
+  <app-modal-delete [message]="'Deseja realmente remover o usuário: '+userRemove?.name+'?'" 
+        (confirm)="remove(userRemove._id)"></app-modal-delete>

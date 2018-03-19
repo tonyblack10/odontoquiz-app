@@ -1,0 +1,31 @@
+<!-- Menu -->
+<div class="menu">
+  <ul class="list">
+      <li class="header">MENU</li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a [routerLink]="['/']">
+            <i class="material-icons">home</i>
+            <span>Home</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/categories']">
+            <i class="material-icons">layers</i>
+            <span>Categorias</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/questions']">
+            <i class="material-icons">question_answer</i>
+            <span>Perguntas</span>
+        </a>
+      </li>
+      <li routerLinkActive="active" *ngIf="userIsAdmin()">
+        <a [routerLink]="['/users']">
+            <i class="material-icons">people</i>
+            <span>Usuários</span>
+        </a>
+      </li>
+  </ul>
+</div>
+<!-- #Menu -->

@@ -1,0 +1,97 @@
+<app-admin-dashboard>
+    <app-panel [header]="title">
+        <form [formGroup]="questionForm" novalidate>
+            <input type="hidden" formControlName="_id">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <app-input label="Enunciado*" id="text">
+                        <input type="text" formControlName="text" id="text" class="form-control" autocomplete="off">
+                        <div class="error-messages">
+                            <app-input-error-message *ngIf="hasError(questionForm, 'text', 'required')"
+                                errorMessage="O campo enunciado é de preenchimento obrigatório">
+                            </app-input-error-message>
+                            <app-input-error-message *ngIf="hasError(questionForm, 'text', 'minlength', 'maxlength')"
+                                errorMessage="O campo enunciado deve conter entre 5 e 200 caracteres">
+                            </app-input-error-message>
+                        </div>
+                    </app-input>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="text">Categoria*</label>
+                        <div class="form-line">
+                            <select class="form-control" formControlName="category">
+                                <option value="">--Selecione--</option>
+                                <option *ngFor="let category of categories" [value]="category._id">
+                                    {{ category?.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <app-input-error-message *ngIf="hasError(questionForm, 'category', 'required')"
+                                errorMessage="É obrigatório selecionar uma categoria"></app-input-error-message>
+                    </div>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Alternativas (preencha com diferentes valores)*</legend>
+                <div class="row clearfix" formArrayName="options"
+                *ngFor="let option of formData.controls; let i = index;">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                        <label>{{ i+1 }}</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6" [formGroupName]="i">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" formControlName="text">
+                            </div>
+                            <app-input-error-message *ngIf="hasError(option, 'text', 'required')"
+                                errorMessage="Campo de preenchimento obrigatório">
+                            </app-input-error-message>
+                            <app-input-error-message *ngIf="hasError(option, 'text', 'maxlength')"
+                                errorMessage="O campo deve conter no máximo 250 caracteres">
+                            </app-input-error-message>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="text">Alternativa Correta*</label>
+                        <div class="form-line">
+                            <select formControlName="answer" class="form-control">
+                                <option value="">--Selecione--</option>
+                                <option *ngFor="let option of OPTIONS" [value]="option">
+                                    {{ option + 1 }}
+                                </option>
+                            </select>
+                        </div>
+                        <app-input-error-message *ngIf="hasError(questionForm, 'answer', 'required')"
+                            errorMessage="É obrigatório selecionar uma alternativa correta">
+                        </app-input-error-message>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <app-input label="Explicação da Resposta*" id="explanation">
+                        <textarea formControlName="explanation" id="explanation" rows="3" class="form-control no-resize"></textarea>
+                        <div class="error-messages">
+                            <app-input-error-message *ngIf="hasError(questionForm, 'explanation', 'required')"
+                                errorMessage="O campo explicação da resposta é de preenchimento obrigatório">
+                            </app-input-error-message>
+                            <app-input-error-message *ngIf="hasError(questionForm, 'explanation', 'minlength', 'maxlength')"
+                                errorMessage="O campo explicação da resposta deve conter entre 10 e 600 caracteres">
+                            </app-input-error-message>
+                        </div>
+                    </app-input>
+                </div>
+            </div>
+            <app-form-options-buttons 
+                [form]="questionForm" urlCancel="/questions" (save)="save($event)">
+            </app-form-options-buttons>
+        </form>
+    </app-panel>
+</app-admin-dashboard>

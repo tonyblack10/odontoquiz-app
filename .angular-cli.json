@@ -1,0 +1,66 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "odontoquiz-app"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css",
+        "../node_modules/adminbsb-materialdesign/plugins/node-waves/waves.css",
+        "../node_modules/adminbsb-materialdesign/plugins/animate-css/animate.css",
+        "styles.css",
+        "../node_modules/adminbsb-materialdesign/css/themes/theme-red.css"      ],
+      "scripts": [
+        "../node_modules/adminbsb-materialdesign/plugins/jquery/jquery.js",
+        "../node_modules/adminbsb-materialdesign/plugins/bootstrap/js/bootstrap.js",
+        "../node_modules/adminbsb-materialdesign/plugins/jquery-slimscroll/jquery.slimscroll.js",
+        "../node_modules/adminbsb-materialdesign/plugins/node-waves/waves.js",
+        "./assets/js/admin.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

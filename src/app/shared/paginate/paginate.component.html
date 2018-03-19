@@ -1,0 +1,18 @@
+<nav class="text-center">
+  <ul class="pagination">
+      <li [class.disabled]="currentPage == 1" (click)="setPage(currentPage-1)">
+          <a href="javascript:void(0);">
+              <i class="material-icons">chevron_left</i>
+          </a>
+      </li>
+      <li *ngFor="let i of generateIndexes()" [class.active]="i+1 == currentPage"
+        (click)="setPage(i+1)">
+        <a href="javascript:void(0);" class="waves-effect">{{i+1}}</a>
+      </li>
+      <li [class.disabled]="currentPage == numberOfPages" (click)="nextPage()">
+          <a href="javascript:void(0);" class="waves-effect">
+              <i class="material-icons">chevron_right</i>
+          </a>
+      </li>
+  </ul>
+</nav>

@@ -1,0 +1,15 @@
+<div class="row clearfix">
+  <div class="col-sm-3 col-md-offset-6">
+      <a [routerLink]="urlCancel" class="btn btn-block btn-default waves-effect">
+          <i class="material-icons">cancel</i>
+          <span>CANCELAR</span>
+      </a>
+  </div>
+  <div class="col-sm-3">
+      <button type="button" (click)="saveForm(form.value)" 
+          class="btn btn-block btn-primary waves-effect" [disabled]="form.invalid">
+          <i class="material-icons">save</i>
+          <span>SALVAR</span>
+      </button>
+  </div>
+</div>
