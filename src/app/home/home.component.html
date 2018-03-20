@@ -1,13 +1,14 @@
 <app-admin-dashboard>
   <app-panel header="Home">
     <div class="row clearfix">
-      <app-infobox icon="question_answer" bgColor="bg-blue" text="perguntas" statistic="135">
+      <app-infobox icon="games" bgColor="bg-blue" text="partidas jogadas" 
+        [statistic]="statistics?.totalOfMatches">
       </app-infobox>
-      <app-infobox icon="games" bgColor="bg-blue" text="partidas" statistic="150">
+      <app-infobox icon="layers" bgColor="bg-blue" text="categorias cadastradas" 
+        [statistic]="statistics?.totalOfCategories">
       </app-infobox>
-      <app-infobox icon="check_circle" bgColor="bg-blue" text="acertos" statistic="90%">
-      </app-infobox>
-      <app-infobox icon="star" bgColor="bg-blue" text="avaliação" statistic="4,3">
+      <app-infobox icon="question_answer" bgColor="bg-blue" 
+        text="perguntas cadastradas" [statistic]="statistics?.totalOfQuestions">
       </app-infobox>
     </div>
   </app-panel>

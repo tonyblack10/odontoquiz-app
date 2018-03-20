@@ -10,6 +10,7 @@ import { QuestionsService } from './../questions/shared/questions.service';
 import { AuthGuardService } from './../auth/auth-guard.service';
 import { UsersService } from './../users/shared/users.service';
 import { TokenInterceptor } from './../auth/token.interceptor';
+import { StatisticsService } from './../shared/statistics/statistics.service';
 import { AppErrorHandler } from './../app.error-handle';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AppErrorHandler } from './../app.error-handle';
     QuestionsService,
     AuthGuardService,
     UsersService,
+    StatisticsService,
     NotificationService,
     JwtHelper,
     {
